@@ -1,0 +1,38 @@
+export ZOPEN_TARBALL_URL="https://gnupg.org/ftp/gcrypt/libassuan/libassuan-2.5.5.tar.bz2"
+export ZOPEN_TARBALL_DEPS="make bzip2 tar curl perl automake autoconf m4 sed gettext zoslib diffutils libgpgerror"
+export ZOPEN_TYPE="TARBALL"
+export ZOPEN_EXTRA_LDFLAGS="${ZOPEN_EXTRA_LDFLAGS} -L\$LIBGPG_HOME/lib"
+export ZOPEN_EXTRA_LIBS="${ZOPEN_EXTRA_LIBS} -lgpg-error"
+export ZOPEN_EXTRA_CFLAGS="${ZOPEN_EXTRA_CFLAGS} -O0 -DHAVE_SYS_SOCKET_H"
+export ZOPEN_COMP=CLANG
+LIBASSUAN_VERSION="2.5.5"
+
+zopen_check_results()
+{
+  dir="$1"
+  pfx="$2"
+  chk="$1/$2_check.log"
+
+  # Echo the following information to gauge build health
+  echo "actualFailures:0"
+  echo "totalTests:1"
+  echo "expectedFailures:0"
+  echo "expectedTotalTests:1"
+}
+
+zopen_append_to_env()
+{
+  # echo envars outside of PATH, MANPATH, LIBPATH
+}
+
+zopen_append_to_setup()
+{
+  # echo commands that will run when installing via setup.sh
+}
+
+zopen_get_version()
+{
+  # Modify to echo the version of your tool/library
+  # Rather than hardcoding the version, obtain the version by running the tool/library
+  echo "$LIBASSUAN_VERSION"
+}
