@@ -1,0 +1,15 @@
+diff --git a/src/assuan-socket.c b/src/assuan-socket.c
+index 97b2312..f1c2bbf 100644
+--- a/src/assuan-socket.c
++++ b/src/assuan-socket.c
+@@ -49,7 +49,9 @@
+ 
+ #include "assuan-defs.h"
+ #include "debug.h"
+-
++#ifdef __MVS__
++#include <sys/time.h>
++#endif
+ /* Hacks for Slowaris.  */
+ #ifndef PF_LOCAL
+ # ifdef PF_UNIX
