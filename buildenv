@@ -1,5 +1,5 @@
 # bump: libassuan-version /LIBASSUAN_VERSION="(.*)"/ https://gnupg.org/ftp/gcrypt/libassuan/|re:/libassuan-([\d.]+).tar.bz2/$1/|semver:*
-LIBASSUAN_VERSION="2.5.5"
+LIBASSUAN_VERSION="2.5.6"
 
 export ZOPEN_BUILD_LINE="STABLE"
 export ZOPEN_STABLE_URL="https://gnupg.org/ftp/gcrypt/libassuan/libassuan-${LIBASSUAN_VERSION}.tar.bz2"
