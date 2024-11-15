@@ -1,0 +1,22 @@
+diff --git a/src/assuan-defs.h b/src/assuan-defs.h
+index faf9aae..71ef0dd 100644
+--- a/src/assuan-defs.h
++++ b/src/assuan-defs.h
+@@ -21,7 +21,7 @@
+ 
+ #ifndef ASSUAN_DEFS_H
+ #define ASSUAN_DEFS_H
+-
++#define putc_unlocked putc_unlocked_replace
+ #ifdef HAVE_SYS_TYPES_H
+ # include <sys/types.h>
+ #endif
+@@ -55,7 +55,7 @@
+ 
+ #define LINELENGTH ASSUAN_LINELENGTH
+ 
+-
++#undef putc_unlocked
+ struct cmdtbl_s
+ {
+   const char *name;
