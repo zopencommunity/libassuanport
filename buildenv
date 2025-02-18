@@ -1,5 +1,5 @@
 # bump: libassuan-version /LIBASSUAN_VERSION="(.*)"/ https://gnupg.org/ftp/gcrypt/libassuan/|re:/libassuan-([\d.]+).tar.bz2/$1/|semver:*
-LIBASSUAN_VERSION="3.0.1"
+LIBASSUAN_VERSION="3.0.2"
 
 export ZOPEN_BUILD_LINE="STABLE"
 export ZOPEN_CATEGORIES="security library"
