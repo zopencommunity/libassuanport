@@ -5,11 +5,22 @@ export ZOPEN_BUILD_LINE="STABLE"
 export ZOPEN_CATEGORIES="security library"
 export ZOPEN_STABLE_URL="https://gnupg.org/ftp/gcrypt/libassuan/libassuan-${LIBASSUAN_VERSION}.tar.bz2"
 export ZOPEN_STABLE_DEPS="make bzip2 tar curl perl automake autoconf m4 sed gettext zoslib diffutils libgpgerror openssl"
+export ZOPEN_DEV_URL="https://github.com/gpg/libassuan.git"
+export ZOPEN_DEV_DEPS="make bzip2 tar curl perl automake autoconf m4 sed gettext zoslib diffutils libgpgerror openssl texinfo"
 
 export ZOPEN_EXTRA_LDFLAGS="${ZOPEN_EXTRA_LDFLAGS} -L\$LIBGPG_HOME/lib"
 export ZOPEN_EXTRA_LIBS="${ZOPEN_EXTRA_LIBS} -lgpg-error"
 export ZOPEN_EXTRA_CFLAGS="${ZOPEN_EXTRA_CFLAGS} -O0 -DHAVE_SYS_SOCKET_H"
 export ZOPEN_COMP=CLANG
+
+
+zopen_post_buildenv()
+{
+  if [ "${ZOPEN_BUILD_LINE}x" = "DEVx" ]; then
+    export ZOPEN_BOOTSTRAP="./autogen.sh"
+    export ZOPEN_EXTRA_CONFIGURE_OPTS="--enable-maintainer-mode"
+  fi
+}
 
 zopen_check_results()
 {

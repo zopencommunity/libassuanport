@@ -1,0 +1,68 @@
+diff --git a/m4/libtool.m4 b/m4/libtool.m4
+index c6f534e..3061194 100644
+--- a/m4/libtool.m4
++++ b/m4/libtool.m4
+@@ -3348,6 +3348,10 @@ openbsd*)
+   fi
+   ;;
+ 
++openedition)
++  lt_cv_deplibs_check_method=pass_all
++  ;;
++
+ osf3* | osf4* | osf5*)
+   lt_cv_deplibs_check_method=pass_all
+   ;;
+diff --git a/src/Makefile.am b/src/Makefile.am
+index 61e1958..46f6179 100644
+--- a/src/Makefile.am
++++ b/src/Makefile.am
+@@ -132,7 +132,7 @@ libassuan_la_LIBADD = @LTLIBOBJS@ @NETLIBS@ @GPG_ERROR_LIBS@
+ 
+ mkheader$(EXEEXT_FOR_BUILD): mkheader.c Makefile
+ 	$(CC_FOR_BUILD) $(CFLAGS_FOR_BUILD) $(CPPFLAGS_FOR_BUILD) \
+-          $(LDFLAGS_FOR_BUILD) -I. -I$(srcdir) -o $@ $(srcdir)/mkheader.c
++          $(LDFLAGS_FOR_BUILD) -I. -I$(srcdir) -o $@ $(srcdir)/mkheader.c $(LIBS)
+ 
+ assuan.h: assuan.h.in mkheader$(EXEEXT_FOR_BUILD) $(parts_of_assuan_h)
+ 	./mkheader$(EXEEXT_FOR_BUILD) $(host_os) $(srcdir)/assuan.h.in \
+diff --git a/src/assuan-defs.h b/src/assuan-defs.h
+index fcb3d2b..56effba 100644
+--- a/src/assuan-defs.h
++++ b/src/assuan-defs.h
+@@ -22,6 +22,10 @@
+ #ifndef ASSUAN_DEFS_H
+ #define ASSUAN_DEFS_H
+ 
++#ifdef __MVS__
++#define putc_unlocked putc_unlocked_replace
++#endif
++
+ #ifdef HAVE_SYS_TYPES_H
+ # include <sys/types.h>
+ #endif
+@@ -55,6 +59,9 @@
+ 
+ #define LINELENGTH ASSUAN_LINELENGTH
+ 
++#ifdef __MVS__
++#undef putc_unlocked
++#endif
+ 
+ struct cmdtbl_s
+ {
+diff --git a/src/assuan-socket.c b/src/assuan-socket.c
+index 4c859a5..b33f575 100644
+--- a/src/assuan-socket.c
++++ b/src/assuan-socket.c
+@@ -48,6 +48,10 @@
+ #include "assuan-defs.h"
+ #include "debug.h"
+ 
++#ifdef __MVS__
++#include <sys/time.h>
++#endif
++
+ /* Hacks for Slowaris.  */
+ #ifndef PF_LOCAL
+ # ifdef PF_UNIX
