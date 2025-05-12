@@ -8,7 +8,7 @@ export ZOPEN_STABLE_DEPS="make bzip2 tar curl perl automake autoconf m4 sed gett
 
 export ZOPEN_EXTRA_LDFLAGS="${ZOPEN_EXTRA_LDFLAGS} -L\$LIBGPG_HOME/lib"
 export ZOPEN_EXTRA_LIBS="${ZOPEN_EXTRA_LIBS} -lgpg-error"
-export ZOPEN_EXTRA_CFLAGS="${ZOPEN_EXTRA_CFLAGS} -O0 -DHAVE_SYS_SOCKET_H"
+export ZOPEN_EXTRA_CFLAGS="${ZOPEN_EXTRA_CFLAGS} -O0 -DHAVE_SYS_SOCKET_H -mzos-target=zosv2r5 -march=z13"
 export ZOPEN_COMP=CLANG
 
 zopen_check_results()
