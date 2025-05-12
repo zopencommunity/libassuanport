@@ -10,6 +10,7 @@ export ZOPEN_EXTRA_LDFLAGS="${ZOPEN_EXTRA_LDFLAGS} -L\$LIBGPG_HOME/lib"
 export ZOPEN_EXTRA_LIBS="${ZOPEN_EXTRA_LIBS} -lgpg-error"
 export ZOPEN_EXTRA_CFLAGS="${ZOPEN_EXTRA_CFLAGS} -O0 -DHAVE_SYS_SOCKET_H -mzos-target=zosv2r5 -march=z13"
 export ZOPEN_COMP=CLANG
+export ZOPEN_SYSTEM_PREREQS="zos25"
 
 zopen_check_results()
 {
