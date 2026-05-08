@@ -4,13 +4,10 @@ LIBASSUAN_VERSION="3.0.2"
 export ZOPEN_BUILD_LINE="STABLE"
 export ZOPEN_CATEGORIES="security library"
 export ZOPEN_STABLE_URL="https://gnupg.org/ftp/gcrypt/libassuan/libassuan-${LIBASSUAN_VERSION}.tar.bz2"
-export ZOPEN_STABLE_DEPS="make bzip2 tar curl perl automake autoconf m4 sed gettext zoslib diffutils libgpgerror openssl"
-
-export ZOPEN_EXTRA_LDFLAGS="${ZOPEN_EXTRA_LDFLAGS} -L\$LIBGPG_HOME/lib"
-export ZOPEN_EXTRA_LIBS="${ZOPEN_EXTRA_LIBS} -lgpg-error"
-export ZOPEN_EXTRA_CFLAGS="${ZOPEN_EXTRA_CFLAGS} -DHAVE_SYS_SOCKET_H -mzos-target=zosv2r5 -march=z13"
-export ZOPEN_SYSTEM_PREREQS="zos25"
+export ZOPEN_STABLE_DEPS="make diffutils libgpgerror"
+export ZOPEN_EXTRA_CFLAGS="${ZOPEN_EXTRA_CFLAGS} -DHAVE_SYS_SOCKET_H"
 export ZOPEN_COMP=CLANG
+export USE_CLANG_WRAPPER=1
 
 zopen_check_results()
 {
